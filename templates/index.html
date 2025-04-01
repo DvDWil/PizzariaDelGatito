@@ -1,0 +1,676 @@
+	<!DOCTYPE html>
+	<html lang="zxx" class="no-js">
+	<head>
+		<!-- Mobile Specific Meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Favicon-->
+		<link rel="shortcut icon" href="{{ url_for('static', filename='img/elements/logo.ico') }}">
+		<!-- Author Meta -->
+		<meta name="author" content="codepixer">
+		<!-- Meta Description -->
+		<meta name="description" content="">
+		<!-- Meta Keyword -->
+		<meta name="keywords" content="">
+		<!-- meta character set -->
+		<meta charset="UTF-8">
+		<!-- Site Title -->
+		<title>PizzariaDelGatito</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+			<!--
+			CSS
+			============================================= -->
+			<link rel="stylesheet" href="{{ url_for('static', filename='css/linearicons.css') }}">
+			<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.css') }}">
+			<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+			<link rel="stylesheet" href="{{ url_for('static', filename='css/nice-select.css') }}">			
+			<link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
+			<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+			<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+		</head>
+		<body>
+
+			
+			<header id="header" id="home">
+				<div class="header-top">
+		  			<div class="container">
+				  		<div class="row justify-content-end">
+				  			<div class="col-lg-8 col-sm-4 col-8 header-top-right no-padding">
+				  				<ul>
+				  					<li>
+				  						Seg-Sex: 8h as 23h
+				  					</li>
+				  					<li>
+				  						Sab-Dom: 11h as 16h
+				  					</li>
+				  					<li>
+				  						<a href="tel:(61) 99669-0653">(61) 99669-0653</a>
+				  					</li>				  					
+				  				</ul>
+				  			</div>
+				  		</div>			  					
+		  			</div>
+				</div>			  	
+			    <div class="container no-padding">
+			    	<div class="row align-items-center justify-content-between d-flex">
+						<div id="logo">
+							<a href="{{ url_for('home') }}">
+								<img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" title="Logo" width="90" height="auto" />
+							</a>
+						</div>
+				      <nav id="nav-menu-container">
+				        <ul class="nav-menu no-padding">
+				          <li class="menu-active no-padding"><a href="{{ url_for('home') }}">Home</a></li>
+				          <li><a href="#about">Sobre</a></li>
+				          <li><a href="{{ url_for('menu') }}">Menu</a></li>
+				          <li><a href="#review">Avaliações</a></li>
+				          <li><a href="{{ url_for('carrinho') }}">Carrinho</a></li>
+				          <li class="menu-has-children no-padding"><a href="">Administrador</a>
+				            <ul>
+				              <li><a href="{{ url_for('lista_clientes') }}">Dados de Cliente</a></li>
+				              <li><a href="{{ url_for('lista_pedidos') }}">Pedidos</a></li>
+				            </ul>
+				          </li>
+				        </ul>
+				      </nav><!-- #nav-menu-container -->		    		
+			    	</div>
+			    </div>
+			  </header>
+
+
+			<!-- start banner Area -->
+			<section class="banner-area " id="home">	
+				<div class="container">
+					<div class="row fullscreen d-flex align-items-center justify-content-start">
+						<div class="banner-content col-lg-7">
+							<h6 class="text-white text-uppercase">Que tal uma pizza hoje?</h6>
+							<h1>
+								Venha aproveitar a sua noite <br>
+								pizzaria del gato				
+							</h1>
+							<a href="{{ url_for('menu') }}" class="primary-btn text-uppercase">Comprar</a>
+						</div>											
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->	
+
+			<!-- Start video-sec Area -->
+			<section class="video-sec-area pb-100 pt-40" id="about">
+				<div class="container">
+					<div class="row justify-content-start align-items-center">
+						<div class="col-lg-6 video-right justify-content-center align-items-center d-flex">
+							<div class="overlay overlay-bg"></div>
+							<a class="play-btn" href="{{ url_for('static', filename='img/chefe.mp4') }}"><img class="img-fluid" src="{{ url_for('static', filename='img/play-icon.png') }}" alt=""></a>
+						</div>						
+						<div class="col-lg-6 video-left">
+							<h6>O processo de preparo.</h6>
+							<h1>Transmissão Ao Vivo <br>
+							da Preparação de Pizza</h1>
+							<p><span>Estamos aqui para ouvir você e entregar excelência</span></p>
+							<p>
+								Estamos aqui para transformar cada fatia em uma experiência única. Dos clássicos aos sabores ousados, nossa missão é levar até você o melhor do mundo da pizza!
+							</p>
+						</div>
+					</div>
+				</div>	
+			</section>
+			<!-- End video-sec Area -->
+			
+			<!-- Start menu Area -->
+			<div class="order_area">
+				<div class="container">
+						<div class="row">
+							<div class="col-xl-12">
+								<div class="section_title mb-70">
+									<h3>Pedidos Populares</h3>
+									<p>Aqui, acreditamos que "cada um tem seu gosto" — e não tem certo ou errado!
+									Seja pizza doce, salgada, tradicional ou criativa, o importante é respeitar o paladar de todos.</p>
+								</div>
+							</div>
+						</div>
+					<div class="row">
+						<div class="col-xl-4 col-md-6">
+							<div class="single_order">
+								<div class="order_thumb">
+									<img src="{{ url_for('static', filename='img/p1.jpg') }}" alt="">
+									<div class="order_prise">
+										<span>A partir de 20.00</span>
+									</div>
+								</div>
+								<div class="order_info">
+									<h3><a href="#">Calabresa</a></h3>
+									<p>Molho de tomate, calabresa fatiada, cebola e orégano<br>
+									</p>
+									<a href="{{ url_for('menu') }}" class="boxed_btn">Fazer pedido!</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-md-6">
+							<div class="single_order">
+								<div class="order_thumb">
+									<img src="{{ url_for('static', filename='img/p2.jpg') }}" alt="">
+									<div class="order_prise">
+										<span>A partir de 18.00</span>
+									</div>
+								</div>
+								<div class="order_info">
+									<h3><a href="#">Mussarela</a></h3>
+									<p>Molho de tomate, mussarela e orégano<br>
+									</p><br>
+									<a href="{{ url_for('menu') }}" class="boxed_btn">Fazer pedido!</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-md-6">
+							<div class="single_order">
+								<div class="order_thumb">
+									<img src="{{ url_for('static', filename='img/p3.jpg') }}" alt="">
+									<div class="order_prise">
+										<span>A partir de 22.00</span>
+									</div>
+								</div>
+								<div class="order_info">
+									<h3><a href="#">Portuguesa</a></h3>
+									<p>Molho de tomate, presunto, ovos, cebola, azeitonas, ervilhas e orégano<br>
+									</p>
+									<a href="{{ url_for('menu') }}" class="boxed_btn">Fazer pedido!</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-md-6">
+							<div class="single_order">
+								<div class="order_thumb">
+									<img src="{{ url_for('static', filename='img/p4.jpg') }}" alt="">
+									<div class="order_prise">
+										<span>A partir de 21.00</span>
+									</div>
+								</div>
+								<div class="order_info">
+									<h3><a href="#">Frango com Catupiry</a></h3>
+									<p>Molho de tomate, frango desfiado e catupiry<br>
+									</p>
+									<a href="{{ url_for('menu') }}" class="boxed_btn">Fazer pedido!</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-md-6">
+							<div class="single_order">
+								<div class="order_thumb">
+									<img src="{{ url_for('static', filename='img/p5.jpg') }}" alt="">
+									<div class="order_prise">
+										<span>A partir de 24.00</span>
+									</div>
+								</div>
+								<div class="order_info">
+									<h3><a href="#">4 Queijos</a></h3>
+									<p>	Molho de tomate, mussarela, gorgonzola, parmesão e catupiry<br>
+									</p>
+									<a href="{{ url_for('menu') }}" class="boxed_btn">Fazer pedido!</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-md-6">
+							<div class="single_order">
+								<div class="order_thumb">
+									<img src="{{ url_for('static', filename='img/p6.jpg') }}" alt="">
+									<div class="order_prise">
+										<span>A partir de 37.00</span>
+									</div>
+								</div>
+								<div class="order_info">
+									<h3><a href="#">Bacon Supreme</a></h3>
+									<p>Molho de tomate, bacon crocante e requeijão cremoso<br>
+									</p>
+									<a href="{{ url_for('menu') }}" class="boxed_btn">Fazer pedido!</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-md-6">
+							<div class="single_order">
+								<div class="order_thumb">
+									<img src="{{ url_for('static', filename='img/p7.jpg') }}" alt="">
+									<div class="order_prise">
+										<span>A partir de 36.00</span>
+									</div>
+								</div>
+								<div class="order_info">
+									<h3><a href="#">Pepperoni</a></h3>
+									<p>	Molho de tomate, pepperoni fatiado e queijo mussarela<br>
+									</p>
+									<a href="{{ url_for('menu') }}" class="boxed_btn">Fazer pedido!</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-md-6">
+							<div class="single_order">
+								<div class="order_thumb">
+									<img src="{{ url_for('static', filename='img/p8.jpg') }}" alt="">
+									<div class="order_prise">
+										<span>A partir de 35.00</span>
+									</div>
+								</div>
+								<div class="order_info">
+									<h3><a href="#">Vegetariana</a></h3>
+									<p>Molho de tomate, champignon, pimentão, tomate, cebola, azeitonas e orégano<br>
+									</p>
+									<a href="{{ url_for('menu') }}" class="boxed_btn">Fazer pedido!</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-md-6">
+							<div class="single_order">
+								<div class="order_thumb">
+									<img src="{{ url_for('static', filename='img/p9.jpg') }}" alt="">
+									<div class="order_prise">
+										<span>A partir de 40.00</span>
+									</div>
+								</div>
+								<div class="order_info">
+									<h3><a href="#">Carne Seca com Catupiry</a></h3>
+									<p>Molho de tomate, champignon, pimentão, tomate, cebola, azeitonas e orégano<br>
+									</p>
+									<a href="{{ url_for('menu') }}" class="boxed_btn">Fazer pedido!</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-md-6">
+							<div class="single_order">
+								<div class="order_thumb">
+									<img src="{{ url_for('static', filename='img/p10.jpg') }}" alt="">
+									<div class="order_prise">
+										<span>A partir de 42.00</span>
+									</div>
+								</div>
+								<div class="order_info">
+									<h3><a href="#">Especial da Casa</a></h3>
+									<p>Molho de tomate, linguiça calabresa artesanal, pimentão, cebola e parmesão<br>
+									</p>
+									<a href="{{ url_for('menu') }}" class="boxed_btn">Fazer pedido!</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-md-6">
+							<div class="single_order">
+								<div class="order_thumb">
+									<img src="{{ url_for('static', filename='img/p11.jpg') }}" alt="">
+									<div class="order_prise">
+										<span>A partir de 32.00</span>
+									</div>
+								</div>
+								<div class="order_info">
+									<h3><a href="#">Chocolate</a></h3>
+									<p>Chocolate ao leite derretido com granulado<br>
+									</p>
+									<a href="{{ url_for('menu') }}" class="boxed_btn">Fazer pedido!</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-md-6">
+							<div class="single_order">
+								<div class="order_thumb">
+									<img src="{{ url_for('static', filename='img/p12.jpg') }}" alt="">
+									<div class="order_prise">
+										<span>A partir de 35.00</span>
+									</div>
+								</div>
+								<div class="order_info">
+									<h3><a href="#">Chocolate com Morango</a></h3>
+									<p>Chocolate ao leite derretido coberto com morangos frescos e leite condensado<br>
+									</p>
+									<a href="{{ url_for('menu') }}" class="boxed_btn">Fazer pedido!</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-md-6">
+							<div class="single_order">
+								<div class="order_thumb">
+									<img src="{{ url_for('static', filename='img/p13.jpg') }}" alt="">
+									<div class="order_prise">
+										<span>A partir de 32.00</span>
+									</div>
+								</div>
+								<div class="order_info">
+									<h3><a href="#">Oreo</a></h3>
+									<p>Creme de chocolate branco, pedaços crocantes de Oreo e leite condensado<br>
+									</p>
+									<a href="{{ url_for('menu') }}" class="boxed_btn">Fazer pedido!</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-md-6">
+							<div class="single_order">
+								<div class="order_thumb">
+									<img src="{{ url_for('static', filename='img/p14.jpg') }}" alt="">
+									<div class="order_prise">
+										<span>A partir de 35.00</span>
+									</div>
+								</div>
+								<div class="order_info">
+									<h3><a href="#">Romeu e Julieta</a></h3>
+									<p>Queijo mussarela e goiabada cremosa<br>
+									</p><br>
+									<a href="{{ url_for('menu') }}" class="boxed_btn">Fazer pedido!</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-md-6">
+							<div class="single_order">
+								<div class="order_thumb">
+									<img src="{{ url_for('static', filename='img/p15.jpg') }}" alt="">
+									<div class="order_prise">
+										<span>A partir de 33.00</span>
+									</div>
+								</div>
+								<div class="order_info">
+									<h3><a href="#">Banana com Canela</a></h3>
+									<p>Banana fatiada, açúcar, canela e leite condensado <br>
+									</p>
+									<a href="{{ url_for('menu') }}" class="boxed_btn">Fazer pedido!</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<!-- End menu Area -->
+			
+			<!-- Start gallery Area -->
+			<section class="gallery-area section-gap" id="gallery">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-60 col-lg-10">
+							<div class="title text-center">
+								<h1 class="mb-10">Nossas Pizzas Artesanais</h1>
+								<p>Feitas com ingredientes locais e massa fresca, porque acreditamos em delícias que fazem bem pra você e pro planeta.</p>
+							</div>
+						</div>
+					</div>						
+					<div class="row">
+						<div class="col-lg-4">
+							<a href="{{ url_for('static', filename='img/g1.jpg') }}" class="img-pop-home">
+								<img class="img-fluid" src="{{ url_for('static', filename='img/g1.jpg') }}" alt="">
+							</a>	
+							<a href="{{ url_for('static', filename='img/g2.jpg') }}" class="img-pop-home">
+								<img class="img-fluid" src="{{ url_for('static', filename='img/g2.avif') }}" alt="">
+							</a>	
+						</div>
+						<div class="col-lg-8">
+							<a href="{{ url_for('static', filename='img/g3.jpg') }}" class="img-pop-home">
+								<img class="img-fluid" src="{{ url_for('static', filename='img/g3.jpg') }}" alt="">
+							</a>	
+							<div class="row">
+								<div class="col-lg-6">
+									<a href="{{ url_for('static', filename='img/g4.jpg') }}" class="img-pop-home">
+										<img class="img-fluid" src="{{ url_for('static', filename='img/g4.jpg') }}" alt="">
+									</a>	
+								</div>
+								<div class="col-lg-6">
+									<a href="{{ url_for('static', filename='img/g5.jpg') }}" class="img-pop-home">
+										<img class="img-fluid" src="{{ url_for('static', filename='img/g5.jpg') }}" alt="">
+									</a>	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</section>
+			<!-- End gallery Area -->
+			
+
+<section class="review-area section-gap" id="review">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-60 col-lg-10">
+                <div class="title text-center">
+                    <h1 class="mb-10">Nossas Pizzas Artesanais</h1>
+                    <p>Feitas com amor e ingredientes sustentáveis</p>
+                </div>
+            </div>
+        </div>						
+        <div class="row">
+            <div class="col-lg-6 col-md-6 single-review">
+                <img src="{{ url_for('static', filename='img/r1.png') }}" alt="Cliente satisfeito">
+                <div class="title d-flex flex-row">
+                    <h4>Margherita Clássica</h4>
+                    <div class="star">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>								
+                    </div>
+                </div>
+                <p>
+                    A simplicidade perfeita! Molho de tomate caseiro, mussarela fresca e manjericão. Ingredientes locais selecionados que fazem toda diferença no sabor. Minha pizza preferida!
+                </p>
+            </div>	
+            <div class="col-lg-6 col-md-6 single-review">
+                <img src="{{ url_for('static', filename='img/r2.png') }}" alt="Outro cliente satisfeito">
+                <div class="title d-flex flex-row">
+                    <h4>Calabresa Especial</h4>
+                    <div class="star">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>								
+                    </div>
+                </div>
+                <p>
+                    A combinação perfeita de calabresa artesanal, cebola caramelizada e azeitonas. A massa fica incrível - crocante por fora e fofinha por dentro. Recomendo muito!
+                </p>
+            </div>	
+        </div>
+        <div class="row counter-row">
+            <div class="col-lg-3 col-md-6 single-counter">
+                <h1 class="counter">2536</h1>
+                <p>Clientes Satisfeitos</p>
+            </div>
+            <div class="col-lg-3 col-md-6 single-counter">
+                <h1 class="counter">7562</h1>
+                <p>Pizzas Entregues</p>
+            </div>
+            <div class="col-lg-3 col-md-6 single-counter">
+                <h1 class="counter">2013</h1>
+                <p>Ingredientes Locais</p>
+            </div>
+            <div class="col-lg-3 col-md-6 single-counter">
+                <h1 class="counter">10536</h1>
+                <p>Pedidos Realizados</p>
+            </div>																		
+        </div>
+    </div>	
+</section>
+
+			
+			<!-- Start blog Area -->
+			<section class="blog-area section-gap" id="blog">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-60 col-lg-10">
+							<div class="title text-center">
+								<h1 class="mb-10">Nossas Novidades de Pizza</h1>
+								<p>Para quem ama pizza feita com ingredientes sustentáveis</p>
+							</div>
+						</div>
+					</div>						
+					<div class="row">
+						<div class="col-lg-6 col-md-6 single-blog">
+							<img class="img-fluid" src="{{ url_for('static', filename='img/b1.jpg') }}" alt="Pizza artesanal">
+							<ul class="post-tags">
+								<li><a href="#">Gastronomia</a></li>
+								<li><a href="#">Sustentabilidade</a></li>
+							</ul>
+							<a href="#"><h4>Nova Massa Integral: Mais Sabor e Saúde</h4></a>
+							<p>
+								Conheça nossa nova massa integral feita com farinha orgânica local. Uma opção mais saudável que mantém todo o sabor da pizza artesanal que você ama.
+							</p>
+							<p class="post-date">
+								31 de Janeiro, 2023
+							</p>
+						</div>
+						<div class="col-lg-6 col-md-6 single-blog">
+							<img class="img-fluid" src="{{ url_for('static', filename='img/b2.jpg') }}" alt="Pizza vegana">
+							<ul class="post-tags">
+								<li><a href="#">Vegano</a></li>
+								<li><a href="#">Inovação</a></li>
+							</ul>
+							<a href="#"><h4>Linha Vegana: Novos Sabores Plant-Based</h4></a>
+							<p>
+								Apresentamos nossa nova linha de pizzas 100% vegetais, com queijos veganos artesanais e proteínas vegetais. Deliciosa e sustentável!
+							</p>
+							<p class="post-date">
+								26 de Março, 2025
+							</p>
+						</div>						
+					</div>
+				</div>	
+			</section>
+			<!-- End blog Area -->
+			
+<footer class="footer-area section-gap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h6>Sobre Nós</h6>
+                    <p>
+                        A Pizzaria Artesanal nasceu da paixão por ingredientes de qualidade e sustentáveis. Nossas pizzas são feitas com massa fermentada naturalmente e ingredientes locais, garantindo sabor autêntico e respeito ao meio ambiente.
+                    </p>
+                    <p class="footer-text">
+                        &copy; <script>document.write(new Date().getFullYear());</script> Pizzaria Artesanal. Todos os direitos reservados.
+                    </p>                                
+                </div>
+            </div>
+            <div class="col-lg-5  col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h6>Newsletter</h6>
+                    <p>Receba nossas novidades e promoções</p>
+                    <div class="" id="mc_embed_signup">
+                        <form target="_blank" novalidate="true" method="post" class="form-inline">
+                            <input class="form-control" name="EMAIL" placeholder="Digite seu e-mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Digite seu e-mail'" required="" type="email">
+                            <button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+                            <div style="position: absolute; left: -5000px;">
+                                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                            </div>
+                            <div class="info pt-20"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>                        
+            <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
+                <div class="single-footer-widget">
+                    <h6>Siga-nos</h6>
+                    <p>Nossas redes sociais</p>
+                    <div class="footer-social d-flex align-items-center">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fa fa-whatsapp"></i></a>
+                        <a href="#"><i class="fa fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>                            
+        </div>
+    </div>
+</footer>
+			
+			<script src="{{ url_for('static', filename='js/vendor/jquery-2.2.4.min.js') }}"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+			<script src="{{ url_for('static', filename='js/vendor/bootstrap.min.js') }}"></script>			
+			<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+			<script src="{{ url_for('static', filename='js/easing.min.js') }}"></script>			
+			<script src="{{ url_for('static', filename='js/hoverIntent.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/superfish.min.js') }}"></script>	
+			<script src="{{ url_for('static', filename='js/jquery.ajaxchimp.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>	
+			<script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>			
+			<script src="{{ url_for('static', filename='js/jquery.sticky.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/jquery.nice-select.min.js') }}"></script>			
+			<script src="{{ url_for('static', filename='js/parallax.min.js') }}"></script>	
+			<script src="{{ url_for('static', filename='js/mail-script.js') }}"></script>				
+			<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+			<script>
+				// Header scroll class
+				$(window).scroll(function() {
+				  if ($(this).scrollTop() > 100) {
+					$('#header').addClass('header-scrolled');
+				  } else {
+					$('#header').removeClass('header-scrolled');
+				  }
+				});
+			  
+				// Verifica na carga da página também
+				$(document).ready(function() {
+				  if ($(window).scrollTop() > 100) {
+					$('#header').addClass('header-scrolled');
+				  }
+				});
+			  </script>
+			  <!-- jQuery primeiro -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Depois Waypoints -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<!-- Por fim CounterUp -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    // Configuração mais robusta do CounterUp
+    $('.counter').counterUp({
+        delay: 10,
+        time: 1000,
+        formatter: function (n) {
+            return n.replace(/,/g, '.');
+        }
+    });
+    
+    // Força a ativação quando o elemento estiver visível
+    new Waypoint({
+        element: document.querySelector('.counter-row'),
+        handler: function() {
+            $('.counter').counterUp({
+                delay: 10,
+                time: 1000
+            });
+        },
+        offset: '75%'
+    });
+});
+</script>
+<script>
+	$(document).ready(function(){
+		var dropdownTimeout;
+		var dropdownDelay = 500; // 500ms = 0.5 segundos
+		
+		// Quando o mouse entra no item do menu
+		$('.menu-has-children').hover(
+			function() {
+				clearTimeout(dropdownTimeout);
+				$(this).find('ul').stop(true, true).slideDown(200);
+			},
+			function() {
+				var $dropdown = $(this).find('ul');
+				dropdownTimeout = setTimeout(function() {
+					$dropdown.stop(true, true).slideUp(200);
+				}, dropdownDelay);
+			}
+		);
+		
+		// Quando o mouse entra no dropdown
+		$('.menu-has-children ul').hover(
+			function() {
+				clearTimeout(dropdownTimeout);
+			},
+			function() {
+				$(this).stop(true, true).slideUp(200);
+			}
+		);
+	});
+	</script>
+		</body>
+	</html>
+
+
+
