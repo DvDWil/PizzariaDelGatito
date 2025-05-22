@@ -34,6 +34,7 @@
 				}
 				body{
 					background-color: #f3f1f1;
+					padding-top: 200px; /* compensando a navbar fixa */
 				}
 	
 				.menu{
@@ -94,7 +95,7 @@
 			    </div>
 			  </header><!-- #header -->	
 
-		<div class="menu">
+		<div class="menu" style="margin-top: 65px;">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8 offset-lg-2">
@@ -103,34 +104,73 @@
 								<h1>Menu de Pizzas</h1>
 							</div>
 							<div class="card-body">
-								<form action="{{ url_for('menu') }}" method="post">
-									<label for="sabor1">Escolha o primeiro sabor:</label>
-									<select name="sabor1" id="sabor1">
-										{% for sabor in sabores %}
-										<option value="{{ sabor }}">{{ sabor }}</option>
-										{% endfor %}
-									</select>
+<!-- (Começa no <form> do menu de pizzas e inclui bebidas dentro dele) -->
 
-									<label for="sabor2">Escolha o segundo sabor (ou "Nenhum" para inteira):</label>
-									<select name="sabor2" id="sabor2">
-										<option value="Nenhum">Nenhum</option>
-										{% for sabor in sabores %}
-										<option value="{{ sabor }}">{{ sabor }}</option>
-										{% endfor %}
-									</select><br>
+<form action="{{ url_for('menu') }}" method="post">
+	<label for="sabor1">Escolha o primeiro sabor:</label>
+	<select name="sabor1" id="sabor1">
+		{% for sabor in sabores %}
+		<option value="{{ sabor }}">{{ sabor }}</option>
+		{% endfor %}
+	</select>
 
-									<label for="quantidade">Quantidade:</label>
-									<input type="number" name="quantidade" id="quantidade" min="1" value="1" required><br>
+	<label for="sabor2">Escolha o segundo sabor (ou "Nenhum" para inteira):</label>
+	<select name="sabor2" id="sabor2">
+		<option value="Nenhum">Nenhum</option>
+		{% for sabor in sabores %}
+		<option value="{{ sabor }}">{{ sabor }}</option>
+		{% endfor %}
+	</select><br>
 
-									<label for="tamanho">Tamanho da Pizza:</label>
-									<select name="tamanho" id="tamanho">
-										<option value="pequena">Pequena</option>
-										<option value="media">Média</option>
-										<option value="grande">Grande</option>
-									</select><br>
+	<label for="quantidade">Quantidade:</label>
+	<input type="number" name="quantidade" id="quantidade" min="1" value="1" required><br>
 
-									<button type="submit" class="btn btn-secondary text-uppercase">Adicionar ao Carrinho</button>
-								</form>
+	<label for="tamanho">Tamanho da Pizza:</label>
+	<select name="tamanho" id="tamanho">
+		<option value="pequena">Pequena</option>
+		<option value="media">Média</option>
+		<option value="grande">Grande</option>
+	</select><br>
+
+	<!-- Bebidas -->
+	<div class="card-body mt-5">
+		<h2>Bebidas</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Bebida</th>
+					<th>Tamanho</th>
+					<th>Preço</th>
+					<th>Quantidade</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for bebida, tamanhos in bebidas.items() %}
+					{% for tamanho, preco in tamanhos.items() %}
+					<tr>
+						<td>{{ bebida }}</td>
+						<td>{{ tamanho }}</td>
+						<td>R$ {{ "%.2f"|format(preco) }}</td>
+						<td>
+							<input type="number" 
+								name="{{ bebida.lower().replace(' ', '_') }}_{{ tamanho.lower().replace(' ', '_') }}_qtd" 
+								min="0" 
+								value="0"
+								class="form-control" style="width: 70px;">
+						</td>
+					</tr>
+					{% endfor %}
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+	<!-- Botões -->
+	<button type="submit" class="btn btn-secondary text-uppercase">Adicionar ao Carrinho</button>
+</form>
+
+<a href="{{ url_for('carrinho') }}">Ir para o Carrinho</a>
+
 
 								<a href="{{ url_for('carrinho') }}">Ir para o Carrinho</a>
 							</div>
