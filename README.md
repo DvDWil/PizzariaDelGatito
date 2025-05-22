@@ -1,6 +1,8 @@
 # PizzariaDelGatito
 
-Trabalho feito na faculdade, as pessoas que participaram do projeto são: Isabely Costa, Fernanda Barbosa, David Wilton.
+Trabalho desenvolvido para a disciplina de Estrutura de Dados, com o objetivo de implementar um sistema de delivery de pizza utilizando conceitos fundamentais da área.
+
+Participantes do projeto são: Isabely Costa, Fernanda Barbosa, David Wilton.
 
 ---
 
@@ -90,5 +92,6 @@ http://127.0.0.1:5000
 Se tiver qualquer dúvida, fique à vontade para perguntar!
 
 ---
+Projeto criado com fins educacionais, aplicando estruturas de dados no contexto de um sistema de pedidos e serviu para aplicar conceitos aprendidos em sala de aula.
 
 Obrigado por usar o projeto PizzariaDelGatito! 🍕😺
