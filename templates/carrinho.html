@@ -91,20 +91,23 @@
 					<h1>Seu Carrinho</h1>
 
                     {% if carrinho %}
-                        <ul>
-                            {% for item in carrinho %}
-                            <li>
-								{% if 'preco_unitario' in item and 'preco_total' in item %}
-									Preço Total (sem frete): R$ {{ "%.2f"|format(item['preco_total']) }}<br>
-									Pizza: {{ item['sabor1'] }} {% if item['sabor2'] %} e {{ item['sabor2'] }}{% endif %}<br>
-									Tamanho: {{ item['tamanho'] }}<br>
-									Quantidade: {{ item['quantidade'] }}<br>
-								{% else %}
-									<span style="color: red;">Erro: Preço não encontrado</span>
-								{% endif %}
-							</li>
-                            {% endfor %}
-                        </ul>
+<ul class="list-group">
+    {% for item in carrinho %}
+    <li class="list-group-item">
+        {% if item.tipo == "pizza" %}
+            Pizza: {{ item.sabor1 }} 
+            {% if item.sabor2 %}e {{ item.sabor2 }} (Meia a Meia){% endif %}<br>
+            Tamanho: {{ item.tamanho }}<br>
+        {% else %}
+            Bebida: {{ item.nome }} - {{ item.tamanho }}<br>
+        {% endif %}
+        Quantidade: {{ item.quantidade }}<br>
+        Preço unitário: R$ {{ "%.2f"|format(item.preco_unitario) }}<br>
+        Subtotal: R$ {{ "%.2f"|format(item.preco_total) }}
+    </li>
+    {% endfor %}
+</ul>
+
                         <a href="{{ url_for('limpar_carrinho') }}">Limpar Carrinho</a>
 
                         <br><h2>Informações do Cliente</h2><br>
