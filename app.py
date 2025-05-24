@@ -3,6 +3,8 @@ from models.pedidos import db
 from models.pedidos import Cliente, Pedido  # Agora importamos db separadamente
 from datetime import datetime
 import os
+from models.funcionario import Funcionario
+
 
 app = Flask(__name__, static_folder='static')
 app.secret_key = "1234"
@@ -54,6 +56,53 @@ fretes = {
     "Guará": 15.00,
     "Retirar na Loja": 0.00
 }
+
+# Criando a hierarquia da pizzaria
+dono = Funcionario("Fernanda", "Dona da Pizzaria")
+
+gerente = Funcionario("Isabely", "Gerente")
+chefe_cozinha = Funcionario("David", "Chefe de Cozinha")
+entregador1 = Funcionario("Rafael", "Entregador")
+entregador2 = Funcionario("Sofia", "Entregador")
+
+atendente1 = Funcionario("Ana", "Atendente")
+atendente2 = Funcionario("Lucas", "Atendente")
+
+pizzaiolo1 = Funcionario("João", "Pizzaiolo")
+pizzaiolo2 = Funcionario("Pedro", "Pizzaiolo")
+
+dono.adicionar_subordinado(gerente)
+dono.adicionar_subordinado(chefe_cozinha)
+dono.adicionar_subordinado(entregador1)
+dono.adicionar_subordinado(entregador2)
+
+gerente.adicionar_subordinado(atendente1)
+gerente.adicionar_subordinado(atendente2)
+
+chefe_cozinha.adicionar_subordinado(pizzaiolo1)
+chefe_cozinha.adicionar_subordinado(pizzaiolo2)
+
+def encontrar_raiz(funcionario):
+    return f"{funcionario.cargo} - {funcionario.nome}"
+
+def encontrar_nos_internos(funcionario, internos=None):
+    if internos is None:
+        internos = []
+    if funcionario.subordinados:
+        internos.append(f"{funcionario.cargo} - {funcionario.nome}")
+        for sub in funcionario.subordinados:
+            encontrar_nos_internos(sub, internos)
+    return internos
+
+def encontrar_nos_folhas(funcionario, folhas=None):
+    if folhas is None:
+        folhas = []
+    if not funcionario.subordinados:
+        folhas.append(f"{funcionario.cargo} - {funcionario.nome}")
+    else:
+        for sub in funcionario.subordinados:
+            encontrar_nos_folhas(sub, folhas)
+    return folhas
 
 def calcular_preco(carrinho):
     return sum(item["preco_total"] for item in carrinho)
@@ -206,6 +255,15 @@ def excluir_pedido(numero_pedido):
         db.session.rollback()
         print("Erro ao excluir pedido:", str(e))
         return "Ocorreu um erro ao excluir o pedido", 500
+    
+@app.route('/hierarquia')
+def mostrar_hierarquia():
+    raiz = encontrar_raiz(dono)
+    internos = encontrar_nos_internos(dono)
+    folhas = encontrar_nos_folhas(dono)
+
+    return render_template('funcionario.html', raiz=raiz, internos=internos, folhas=folhas)
+
 
 
 if __name__ == '__main__':
