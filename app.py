@@ -55,6 +55,7 @@ fretes = {
     "Retirar na Loja": 0.00
 }
 
+
 def calcular_preco(carrinho):
     return sum(item["preco_total"] for item in carrinho)
 
@@ -149,28 +150,39 @@ def finalizar_pedido():
             db.session.add(cliente)
             db.session.commit()
         
-        # Usar diretamente a lista do carrinho como JSON (SQLAlchemy/SQLite suporta isso)
-        numero_pedido = Pedido.query.count() + 1
-        
-        pedido = Pedido(
-            numero_pedido=numero_pedido,
-            cliente=cliente,  # Nosso __init__ modificado lidará com isso corretamente
-            itens=session["carrinho"],  # SQLAlchemy cuidará da conversão para JSON
-            preco_total=preco_total,
-            local_entrega=local_entrega
-        )
-        
-        db.session.add(pedido)
-        db.session.commit()
-        
-        session.pop("carrinho", None)
-        return redirect(url_for('lista_pedidos'))
+        # Código para verificar se o modelo Pedido está configurado para armazenar uma lista em 'itens'
+        try:
+            # Convertendo o carrinho para string JSON se o modelo esperar uma string
+            import json
+            itens_json = json.dumps(session["carrinho"])
+            
+            # Busca o maior número de pedido existente e adiciona 1
+            ultimo_pedido = Pedido.query.order_by(Pedido.numero_pedido.desc()).first()
+            numero_pedido = (ultimo_pedido.numero_pedido + 1) if ultimo_pedido else 1
+            
+            pedido = Pedido(
+                numero_pedido=numero_pedido,
+                cliente_id=cliente.id,  # Use cliente_id em vez de cliente direto
+                itens=itens_json,       # Armazena como JSON
+                preco_total=preco_total,
+                local_entrega=local_entrega
+            )
+            db.session.add(pedido)
+            db.session.commit()
+            
+            session.pop("carrinho", None)
+            return redirect(url_for('lista_pedidos'))
+        except Exception as e:
+            db.session.rollback()
+            print("Erro ao salvar itens do pedido:", str(e))
+            # Tentar uma abordagem alternativa se a primeira falhar
+            return "Erro ao processar os itens do pedido. Verifique o modelo Pedido.", 500
         
     except Exception as e:
         db.session.rollback()  # Adiciona rollback para garantir integridade do banco
         print("Erro ao finalizar pedido:", str(e))  # Log do erro
         return "Ocorreu um erro ao processar seu pedido. Por favor, tente novamente.", 500
-
+    
 @app.route('/pedidos')
 def lista_pedidos():
     try:
