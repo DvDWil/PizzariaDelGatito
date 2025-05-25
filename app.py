@@ -40,6 +40,30 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
+from sqlalchemy import text
+
+with app.app_context():
+    db.create_all()
+    
+    try:
+        with db.engine.connect() as conn:
+            conn.execute(text('ALTER TABLE pedido ADD COLUMN status VARCHAR(20)'))
+            conn.commit()
+        print("Coluna 'status' adicionada com sucesso!")
+    except Exception as e:
+        print(f"Coluna 'status' já existe ou erro: {e}")
+    
+    try:
+        pedidos_sem_status = Pedido.query.filter(Pedido.status.is_(None)).all()
+        for pedido in pedidos_sem_status:
+            pedido.status = 'pendente'
+        db.session.commit()
+        if pedidos_sem_status:
+            print(f"Status 'pendente' definido para {len(pedidos_sem_status)} pedidos existentes")
+    except Exception as e:
+        print(f"Erro ao atualizar status dos pedidos: {e}")
+        db.session.rollback()
+
 sabores_disponiveis = ["Calabresa", "Mussarela", "Portuguesa", "Frango com Catupiry", "4 Queijos", "Bacon Supreme", "Pepperoni", "Vegetariana", "Especial da Casa", "Chocolate", "Chocolate com Morango", "Oreo", "Romeu e Julieta", "Banana com Canela"]
 
 precos_pizza = {
@@ -130,6 +154,40 @@ def calcular_preco(carrinho):
 @app.route('/')
 def home():
     return render_template('index.html')
+
+# Adicione essas rotas ao seu app.py
+
+@app.route('/mandar_entrega/<int:numero_pedido>')
+def mandar_entrega(numero_pedido):
+    try:
+        pedido = Pedido.query.filter_by(numero_pedido=numero_pedido).first()
+        
+        if pedido:
+            pedido.status = 'em_entrega'
+            db.session.commit()
+            return redirect(url_for('lista_pedidos'))
+        else:
+            return "Pedido não encontrado", 404
+    except Exception as e:
+        db.session.rollback()
+        print("Erro ao mandar pedido para entrega:", str(e))
+        return "Ocorreu um erro ao processar a solicitação", 500
+
+@app.route('/entregar_pedido/<int:numero_pedido>')
+def entregar_pedido(numero_pedido):
+    try:
+        pedido = Pedido.query.filter_by(numero_pedido=numero_pedido).first()
+        
+        if pedido:
+            pedido.status = 'entregue'
+            db.session.commit()
+            return redirect(url_for('lista_pedidos'))
+        else:
+            return "Pedido não encontrado", 404
+    except Exception as e:
+        db.session.rollback()
+        print("Erro ao marcar pedido como entregue:", str(e))
+        return "Ocorreu um erro ao processar a solicitação", 500
 
 @app.route('/menu', methods=['GET', 'POST'])
 def menu():

@@ -24,8 +24,10 @@ class Pedido(db.Model):
     preco_total = db.Column(db.Float, nullable=False)
     local_entrega = db.Column(db.String(100), nullable=False)
     data_pedido = db.Column(db.DateTime, default=db.func.current_timestamp())
+    # Nova coluna para status do pedido
+    status = db.Column(db.String(20), default='pendente', nullable=False)  # pendente, em_entrega, entregue
 
-    def __init__(self, numero_pedido, cliente, itens, preco_total, local_entrega):
+    def __init__(self, numero_pedido, cliente, itens, preco_total, local_entrega, status='pendente'):
         self.numero_pedido = numero_pedido
         # Se cliente for um objeto Cliente, use seu ID
         if hasattr(cliente, 'id'):
@@ -35,3 +37,4 @@ class Pedido(db.Model):
         self.itens = itens
         self.preco_total = preco_total
         self.local_entrega = local_entrega
+        self.status = status
