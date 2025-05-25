@@ -17,7 +17,6 @@
     <title>Tabela de dados</title>
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
-<<<<<<< HEAD
         <!--
         CSS
         ============================================= -->
@@ -86,7 +85,7 @@
                   </nav><!-- #nav-menu-container -->		    		
                 </div>
             </div>
-          </header><!-- #header -->
+          </header><br><!-- #header -->
 
           <section class="generic-banner">				
             <div class="container">
@@ -94,6 +93,10 @@
                     <div class="col-lg-10">
                         <div class="generic-banner-content">
                             <h2>Banco de Dados - Tabela de Registros de Pedidos</h2>
+                            <div style="margin: 20px 0;">
+                                <a href="{{ url_for('relatorio_pedidos') }}" class="btn btn-success">Pedidos Organizados pelo Preço > Crescente</a>
+                                <a href="{{ url_for('lista_pedidos') }}" class="btn btn-success">Voltar Relatório Original</a>
+                            </div>
                             <table border="1">
                                 <tr>
                                     <th>Número do Pedido</th>
@@ -129,6 +132,9 @@
                                 </tr>
                                 {% endfor %}
                             </table>
+                            <div style="margin: 20px 0;">
+                                <a href="{{ url_for('relatorio_estatisticas') }}" class="btn btn-success">Relatório Estatístico</a>
+                            </div>
                             
                         </div>
                     </div>
@@ -204,183 +210,4 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script src="{{ url_for('static', filename='js/mail-script.js') }}"></script>				
         <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     </body>
-=======
-    <!--
-    CSS
-    ============================================= -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/linearicons.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/nice-select.css') }}">			
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-</head>
-<style>
-    table { width: 100%; border-collapse: collapse;}
-    th, td { border: 1px solid black; padding: 8px; text-align: left; }
-    th { background-color: #f2f2f2; }
-
-    header{
-        position: fixed;
-        background-color: #5c5151;
-    }
-</style>
-<body>
-
-    <header id="header" id="home">
-        <div class="header-top">
-            <div class="container">
-                <div class="row justify-content-end">
-                    <div class="col-lg-8 col-sm-4 col-8 header-top-right no-padding">
-                        <ul>
-                            <li>
-                                Seg-Sex: 8h as 23h
-                            </li>
-                            <li>
-                                Sab-Dom: 11h as 16h
-                            </li>
-                            <li>
-                                <a href="tel:(61) 99669-0653">(61) 99669-0653</a>
-                            </li>				  					
-                        </ul>
-                    </div>
-                </div>			  					
-            </div>
-        </div>			  	
-        <div class="container no-padding">
-            <div class="row align-items-center justify-content-between d-flex">
-                <div id="logo">
-                    <a href="{{ url_for('home') }}">
-                        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" title="Logo" width="90" height="auto" />
-                    </a>
-                </div>
-                <nav id="nav-menu-container">
-                    <ul class="nav-menu no-padding">
-                        <li class="menu-active no-padding"><a href="{{ url_for('home') }}">Home</a></li>
-                        <li><a href="#about">Sobre</a></li>
-                        <li><a href="{{ url_for('menu') }}">Menu</a></li>
-                        <li><a href="#review">Avaliações</a></li>
-                        <li><a href="{{ url_for('carrinho') }}">Carrinho</a></li>
-                        <li class="menu-has-children no-padding"><a href="">Administrador</a>
-                            <ul>
-                                <li><a href="{{ url_for('lista_clientes') }}">Dados de Cliente</a></li>
-                                <li><a href="{{ url_for('lista_pedidos') }}">Pedidos</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav><!-- #nav-menu-container -->		    		
-            </div>
-        </div>
-    </header><!-- #header -->
-
-    <section class="generic-banner">				
-        <div class="container">
-            <div class="row height align-items-center justify-content-center">
-                <div class="col-lg-10">
-                    <div class="generic-banner-content">
-                        <h2>Banco de Dados - Tabela de Registros de Pedidos</h2>
-                        <table border="1">
-                            <tr>
-                                <th>Número do Pedido</th>
-                                <th>Cliente</th>
-                                <th>Sabor</th>
-                                <th>Preço Total</th>
-                                <th>Ações</th>
-                            </tr>
-                            {% for pedido in pedidos %}
-                            <tr>
-                                <td>#{{ pedido.numero_pedido }}</td>
-                                <td>{{ pedido.cliente.nome }}</td>
-                                <td>
-                                    {% for item in pedido.sabor %}
-                                        {{ item.sabor1 }}{% if item.sabor2 %} / {{ item.sabor2 }}{% endif %}
-                                        ({{ item.tipo_pizza }})<br>
-                                    {% endfor %}
-                                </td>
-                                <td>R$ {{ "%.2f"|format(pedido.preco_total) }}</td>
-                                <td>
-                                    <a href="{{ url_for('excluir_pedido', numero_pedido=pedido.numero_pedido) }}" 
-                                       class="btn btn-danger"
-                                       onclick="return confirm('Tem certeza que deseja excluir este pedido?')">
-                                       Excluir
-                                    </a>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>	
-
-    <!-- start footer Area -->		
-    <footer class="footer-area section-gap">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-md-6 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h6>About Us</h6>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.
-                        </p>
-                        <p class="footer-text">
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </p>								
-                    </div>
-                </div>
-                <div class="col-lg-5  col-md-6 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h6>Newsletter</h6>
-                        <p>Stay update with our latest</p>
-                        <div class="" id="mc_embed_signup">
-                            <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
-                                <input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
-                                <button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
-                                <div style="position: absolute; left: -5000px;">
-                                    <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-                                </div>
-
-                                <div class="info pt-20"></div>
-                            </form>
-                        </div>
-                    </div>
-                </div>						
-                <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
-                    <div class="single-footer-widget">
-                        <h6>Follow Us</h6>
-                        <p>Let us be social</p>
-                        <div class="footer-social d-flex align-items-center">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-dribbble"></i></a>
-                            <a href="#"><i class="fa fa-behance"></i></a>
-                        </div>
-                    </div>
-                </div>							
-            </div>
-        </div>
-    </footer>	
-    <!-- End footer Area -->	
-
-    <script src="{{ url_for('static', filename='js/vendor/jquery-2.2.4.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="{{ url_for('static', filename='js/vendor/bootstrap.min.js') }}"></script>			
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-    <script src="{{ url_for('static', filename='js/easing.min.js') }}"></script>			
-    <script src="{{ url_for('static', filename='js/hoverIntent.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/superfish.min.js') }}"></script>	
-    <script src="{{ url_for('static', filename='js/jquery.ajaxchimp.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>	
-    <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>			
-    <script src="{{ url_for('static', filename='js/jquery.sticky.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/jquery.nice-select.min.js') }}"></script>			
-    <script src="{{ url_for('static', filename='js/parallax.min.js') }}"></script>	
-    <script src="{{ url_for('static', filename='js/mail-script.js') }}"></script>				
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-</body>
->>>>>>> d78ac5db9021c27e5d4ef1041372f2037282dfc5
 </html>

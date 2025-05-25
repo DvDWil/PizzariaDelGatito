@@ -3,11 +3,28 @@ from models.pedidos import db
 from models.pedidos import Cliente, Pedido  # Agora importamos db separadamente
 from datetime import datetime
 import os
-<<<<<<< HEAD
 from models.funcionario import Funcionario
+from collections import deque
+from flask import jsonify
 
-=======
->>>>>>> d78ac5db9021c27e5d4ef1041372f2037282dfc5
+fila_pedidos = deque()
+pilha_historico = []
+
+def bubble_sort_clientes(clientes):
+    n = len(clientes)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if clientes[j].nome > clientes[j+1].nome:
+                clientes[j], clientes[j+1] = clientes[j+1], clientes[j]
+
+def quick_sort_pedidos(pedidos):
+    if len(pedidos) <= 1:
+        return pedidos
+    else:
+        pivot = pedidos[0]
+        menores = [p for p in pedidos[1:] if p.preco_total <= pivot.preco_total]
+        maiores = [p for p in pedidos[1:] if p.preco_total > pivot.preco_total]
+        return quick_sort_pedidos(menores) + [pivot] + quick_sort_pedidos(maiores)
 
 app = Flask(__name__, static_folder='static')
 app.secret_key = "1234"
@@ -60,7 +77,6 @@ fretes = {
     "Retirar na Loja": 0.00
 }
 
-<<<<<<< HEAD
 # Criando a hierarquia da pizzaria
 dono = Funcionario("Fernanda", "Dona da Pizzaria")
 
@@ -107,8 +123,6 @@ def encontrar_nos_folhas(funcionario, folhas=None):
         for sub in funcionario.subordinados:
             encontrar_nos_folhas(sub, folhas)
     return folhas
-=======
->>>>>>> d78ac5db9021c27e5d4ef1041372f2037282dfc5
 
 def calcular_preco(carrinho):
     return sum(item["preco_total"] for item in carrinho)
@@ -204,7 +218,6 @@ def finalizar_pedido():
             db.session.add(cliente)
             db.session.commit()
         
-<<<<<<< HEAD
         # Usar diretamente a lista do carrinho como JSON (SQLAlchemy/SQLite suporta isso)
         numero_pedido = Pedido.query.count() + 1
         
@@ -218,48 +231,17 @@ def finalizar_pedido():
         
         db.session.add(pedido)
         db.session.commit()
+        fila_pedidos.append(pedido.numero_pedido)
+
         
         session.pop("carrinho", None)
         return redirect(url_for('lista_pedidos'))
-=======
-        # Código para verificar se o modelo Pedido está configurado para armazenar uma lista em 'itens'
-        try:
-            # Convertendo o carrinho para string JSON se o modelo esperar uma string
-            import json
-            itens_json = json.dumps(session["carrinho"])
-            
-            # Busca o maior número de pedido existente e adiciona 1
-            ultimo_pedido = Pedido.query.order_by(Pedido.numero_pedido.desc()).first()
-            numero_pedido = (ultimo_pedido.numero_pedido + 1) if ultimo_pedido else 1
-            
-            pedido = Pedido(
-                numero_pedido=numero_pedido,
-                cliente_id=cliente.id,  # Use cliente_id em vez de cliente direto
-                itens=itens_json,       # Armazena como JSON
-                preco_total=preco_total,
-                local_entrega=local_entrega
-            )
-            db.session.add(pedido)
-            db.session.commit()
-            
-            session.pop("carrinho", None)
-            return redirect(url_for('lista_pedidos'))
-        except Exception as e:
-            db.session.rollback()
-            print("Erro ao salvar itens do pedido:", str(e))
-            # Tentar uma abordagem alternativa se a primeira falhar
-            return "Erro ao processar os itens do pedido. Verifique o modelo Pedido.", 500
->>>>>>> d78ac5db9021c27e5d4ef1041372f2037282dfc5
         
     except Exception as e:
         db.session.rollback()  # Adiciona rollback para garantir integridade do banco
         print("Erro ao finalizar pedido:", str(e))  # Log do erro
         return "Ocorreu um erro ao processar seu pedido. Por favor, tente novamente.", 500
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> d78ac5db9021c27e5d4ef1041372f2037282dfc5
 @app.route('/pedidos')
 def lista_pedidos():
     try:
@@ -295,7 +277,6 @@ def excluir_pedido(numero_pedido):
         db.session.rollback()
         print("Erro ao excluir pedido:", str(e))
         return "Ocorreu um erro ao excluir o pedido", 500
-<<<<<<< HEAD
     
 @app.route('/hierarquia')
 def mostrar_hierarquia():
@@ -305,8 +286,35 @@ def mostrar_hierarquia():
 
     return render_template('funcionario.html', raiz=raiz, internos=internos, folhas=folhas)
 
-=======
->>>>>>> d78ac5db9021c27e5d4ef1041372f2037282dfc5
+
+
+@app.route('/relatorio_clientes')
+def relatorio_clientes():
+    clientes = Cliente.query.all()
+    bubble_sort_clientes(clientes)
+    return render_template('tabela_cliente.html', clientes=clientes)
+
+@app.route('/relatorio_pedidos')
+def relatorio_pedidos():
+    pedidos = Pedido.query.all()
+    pedidos_ordenados = quick_sort_pedidos(pedidos)
+    return render_template('tabela_pedidos.html', pedidos=pedidos_ordenados)
+
+@app.route('/relatorio_estatisticas')
+def relatorio_estatisticas():
+    total_pedidos = Pedido.query.count()
+    valor_medio = db.session.query(db.func.avg(Pedido.preco_total)).scalar()
+    mais_caro = db.session.query(Pedido).order_by(Pedido.preco_total.desc()).first()
+
+    valor_medio_str = f"R${valor_medio:.2f}" if valor_medio else "Nenhum pedido"
+    mais_caro_num = mais_caro.numero_pedido if mais_caro else "Nenhum pedido"
+
+    return render_template(
+        'relatorio_estatisticas.html',
+        total_pedidos=total_pedidos,
+        valor_medio=valor_medio_str,
+        pedido_mais_caro=mais_caro_num
+    )
 
 
 if __name__ == '__main__':

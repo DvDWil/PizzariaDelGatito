@@ -115,25 +115,82 @@
 <section class="hierarquia-container">
     <h1 class="text-center">Hierarquia da Pizzaria</h1>
 
-    <h2 onclick="toggle('raiz')">[+] Raiz</h2>
-    <ul id="raiz">
+    <h2 onclick="toggle('raiz')">[+] Gerente Geral</h2>
+    <ul id="raiz" class="hidden">
         <li>{{ raiz }}</li>
     </ul>
 
-    <h3 onclick="toggle('internos')">[+] Nós Internos</h3>
+    <h3 onclick="toggle('internos')">[+] Supervisores</h3>
     <ul id="internos" class="hidden">
         {% for interno in internos %}
             <li>{{ interno }}</li>
         {% endfor %}
     </ul>
 
-    <h3 onclick="toggle('folhas')">[+] Nós Folhas</h3>
+    <h3 onclick="toggle('folhas')">[+] Funcionários</h3>
     <ul id="folhas" class="hidden">
         {% for folha in folhas %}
             <li>{{ folha }}</li>
         {% endfor %}
     </ul>
 </section>
+
+<style>
+    .hierarquia-container {
+        max-width: 800px;
+        margin: 50px auto 100px auto;
+        padding: 30px 25px;
+        background: #fff7f0;
+        border-radius: 10px;
+        box-shadow: 0 8px 18px rgba(255, 140, 0, 0.2);
+        font-family: 'Poppins', sans-serif;
+        color: #6b3e00;
+    }
+    .hierarquia-container h1 {
+        text-align: center;
+        font-weight: 700;
+        color: #d35400;
+        margin-bottom: 30px;
+        text-shadow: 1px 1px 3px #e67e22;
+    }
+    .hierarquia-container h2, .hierarquia-container h3 {
+        cursor: pointer;
+        user-select: none;
+        margin-top: 20px;
+        color: #e67e22;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+    .hierarquia-container h2:hover, .hierarquia-container h3:hover {
+        color: #d35400;
+    }
+    .hierarquia-container ul {
+        list-style: none;
+        padding-left: 20px;
+        margin-top: 10px;
+    }
+    .hierarquia-container li {
+        background: #f9e4d4;
+        margin: 6px 0;
+        padding: 12px 15px;
+        border-radius: 6px;
+        box-shadow: 0 2px 6px rgba(230, 126, 34, 0.2);
+        transition: background-color 0.3s ease;
+    }
+    .hierarquia-container li:hover {
+        background-color: #f3c19a;
+    }
+    .hidden {
+        display: none;
+    }
+</style>
+
+<script>
+    function toggle(id) {
+        const el = document.getElementById(id);
+        el.classList.toggle('hidden');
+    }
+</script>
 
 <footer class="footer-area section-gap">
     <div class="container">

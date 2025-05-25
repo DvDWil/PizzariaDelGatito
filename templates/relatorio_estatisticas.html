@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <title>Relatório Estatístico</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <style>
+        body {
+            background: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+            padding-top: 40px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-weight: 700;
+            color: #d35400;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 3px #e67e22;
+        }
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(211, 84, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(211, 84, 0, 0.35);
+        }
+        .card-body {
+            padding: 30px 25px;
+        }
+        .card h5 {
+            color: #d35400;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        .card p {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #6b3e00;
+            margin: 0;
+        }
+        .btn-success {
+            background-color: #d35400;
+            border-color: #d35400;
+            font-weight: 600;
+            padding: 10px 25px;
+            display: block;
+            width: 100%;
+            margin-top: 30px;
+            border-radius: 50px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-success:hover {
+            background-color: #e67e22;
+            border-color: #e67e22;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Relatório Estatístico</h1>
+
+        <div class="card">
+            <div class="card-body">
+                <h5>Total de Pedidos</h5>
+                <p>{{ total_pedidos }}</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5>Valor Médio dos Pedidos</h5>
+                <p>{{ valor_medio }}</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5>Número do Pedido Mais Caro</h5>
+                <p>{{ pedido_mais_caro }}</p>
+            </div>
+        </div>
+
+        <a href="{{ url_for('home') }}" class="btn btn-success">Voltar ao Início</a>
+    </div>
+</body>
+</html>
+
