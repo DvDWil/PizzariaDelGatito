@@ -1,45 +1,76 @@
 # PizzariaDelGatito
 
-Trabalho desenvolvido para a disciplina de Estrutura de Dados, com o objetivo de implementar um sistema de delivery de pizza utilizando conceitos fundamentais da área.
-
-Participantes do projeto são: Isabely Costa, Fernanda Barbosa, David Wilton.
+Trabalho desenvolvido para a disciplina de **Estrutura de Dados**, com o objetivo de implementar um sistema de **delivery de pizza**, aplicando conceitos fundamentais como listas, filas, pilhas, dicionários e banco de dados relacional.
 
 ---
 
-## Como rodar o projeto
+## Descrição do Projeto
 
-### Passo 1: Criar e ativar o ambiente virtual (venv)
+O projeto **PizzariaDelGatito** simula o funcionamento de uma pizzaria, permitindo:
+
+- Cadastro de clientes, pedidos, funcionários, pizzas, bebidas e ingredientes.
+- Montagem dos pedidos com controle de itens e estoque.
+- Processamento de pagamentos.
+- Acompanhamento do status dos pedidos.
+
+Foi desenvolvido utilizando **Python e Flask**, representando na prática conceitos de estrutura de dados no desenvolvimento de sistemas.
+
+---
+
+## Tecnologias Utilizadas
+
+- **Python 3.x**
+- **Flask** (framework web)
+- **SQLite** (banco de dados leve)
+- **HTML/CSS** (para páginas básicas, se aplicável)
+- **SQLAlchemy** (se utilizado para ORM)
+- Conceitos de **Estrutura de Dados**
+
+---
+
+## Estrutura dos Arquivos
+
+```plaintext
+PizzariaDelGatito/
+├── app.py                 # Arquivo principal da aplicação Flask
+├── models.py              # Definição das classes e modelos do banco
+├── templates/             # Páginas HTML (se houver)
+├── static/                # Arquivos CSS, JS, imagens (se houver)
+├── requirements.txt       # Dependências do projeto
+├── README.md              # Documentação do projeto
+├── database/              # Arquivos relacionados ao banco de dados (se aplicável)
+└── venv/                  # Ambiente virtual (não enviado para o GitHub)
+```
+
+---
+
+## Instruções de Execução
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/usuario/PizzariaDelGatito.git
+cd PizzariaDelGatito
+```
+
+### 2. Crie e ative o ambiente virtual
 
 #### Windows (PowerShell)
 
-1. Abra o PowerShell na pasta do projeto.  
-2. Rode para criar o ambiente virtual:
-
 ```powershell
 python -m venv venv
+.env\Scriptsctivate
 ```
 
-3. Ative o ambiente virtual:
-
-```powershell
-.\venv\Scripts\activate
-```
-
-> **Importante:**  
-> Se aparecer um erro falando que scripts não podem ser executados, rode este comando para liberar temporariamente nesta sessão do PowerShell:
-
+> Se der erro de permissão, execute:
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
 ```
 
-Depois tente ativar o ambiente virtual de novo.
-
-#### Windows (Prompt de Comando - cmd)
-
-Se o PowerShell bloquear, abra o Prompt de Comando e rode:
+#### Windows (CMD)
 
 ```cmd
-venv\Scripts\activate.bat
+venv\Scriptsctivate.bat
 ```
 
 #### macOS / Linux
@@ -49,23 +80,15 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
----
-
-### Passo 2: Instalar as dependências
-
-Com o ambiente virtual ativado, rode:
+### 3. Instale as dependências
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
+### 4. Execute a aplicação
 
-### Passo 3: Rodar o Flask
-
-Se o seu arquivo principal do Flask for `app.py`, rode:
-
-#### Windows (PowerShell ou cmd)
+#### Windows
 
 ```powershell
 set FLASK_APP=app.py
@@ -79,13 +102,25 @@ export FLASK_APP=app.py
 flask run
 ```
 
-Após isso, o Flask vai iniciar o servidor local e você poderá acessar o projeto no navegador pelo endereço:
+Acesse no navegador:
 
 ```
 http://127.0.0.1:5000
 ```
 
 ---
+
+## Integrantes do Grupo
+
+- Isabely Costa
+- Fernanda Barbosa
+- David Wilton Souza Barbosa
+
+---
+
+## Observações Finais
+
+Este projeto foi desenvolvido com fins **educacionais**, para a disciplina de **Estrutura de Dados** ministrada pela professora **Karla Roberto Sartin**, aplicando conceitos teóricos na prática.
 
 ## Dúvidas
 
