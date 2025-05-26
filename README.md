@@ -127,6 +127,5 @@ Este projeto foi desenvolvido com fins **educacionais**, para a disciplina de **
 Se tiver qualquer dúvida, fique à vontade para perguntar!
 
 ---
-Projeto criado com fins educacionais, aplicando estruturas de dados no contexto de um sistema de pedidos e serviu para aplicar conceitos aprendidos em sala de aula.
 
 Obrigado por usar o projeto PizzariaDelGatito! 🍕😺
